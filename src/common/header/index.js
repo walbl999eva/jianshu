@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {CSSTransition} from 'react-transition-group'
 import {connect} from "react-redux";
 import {actionCreators} from './store'
+import {actionCreators as loginActionCreators} from '../../pages/login/store'
 import {Link} from "react-router-dom";
 import {
   HeaderWrapper,
@@ -21,16 +22,20 @@ import {
 
 class Header extends Component {
   render() {
-    const {focused, handleInputFocus, handleInputBlur, list} = this.props
+    const {focused, handleInputFocus, handleInputBlur, list, login,logout} = this.props
     return (
       <HeaderWrapper>
         <Link to='/'>
           <Logo/>
         </Link>
         <Nav>
-          <NavItem className='left active'>首页</NavItem>
+          <Link to='/'><NavItem className='left active'>首页</NavItem></Link>
           <NavItem className='left'>下载App</NavItem>
-          <NavItem className='right'>登录</NavItem>
+          {
+            login ?
+              <NavItem className='right' onClick={logout}>退出</NavItem> :
+              <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
+          }
           <NavItem className='right'>
             <span className="iconfont">&#xe600;</span>
           </NavItem>
@@ -55,10 +60,12 @@ class Header extends Component {
           </SearchWrapper>
         </Nav>
         <Addition>
-          <Button className='writing'>
-            <span className="iconfont">&#xe616;</span>
-            写文章
-          </Button>
+          <Link to='/write'>
+            <Button className='writing'>
+              <span className="iconfont">&#xe616;</span>
+              写文章
+            </Button>
+          </Link>
           <Button className='reg'>注册</Button>
         </Addition>
       </HeaderWrapper>
@@ -119,6 +126,7 @@ const mapStateToProps = (state) => {
     totalPage: state.getIn(['header', 'totalPage']),
     mouseIn: state.getIn(['header', 'mouseIn']),
     rotate: state.getIn(['header', 'rotate']),
+    login: state.getIn(['login', 'login']),
   }
 }
 
@@ -145,6 +153,9 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         dispatch(actionCreators.changePage(1))
       }
+    },
+    logout(){
+      dispatch(loginActionCreators.logout())
     }
   }
 }

@@ -9,6 +9,7 @@ export const HeaderWrapper = styled.div`
   margin: 0 auto;
   background:#fff;
   border-bottom: 1px solid #f0f0f0;
+  z-index: 1;
   @media (max-width:1080px){
     padding-left: 100px;
     padding-right: 221px;
@@ -36,6 +37,7 @@ export const NavItem = styled.div`
   line-height: 56px;
   padding: 0 15px;
   font-size: 15px;
+  cursor:pointer;
   &.left{
     font-size: 17px;
     float:left;

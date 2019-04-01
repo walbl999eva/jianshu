@@ -11,7 +11,7 @@ class List extends PureComponent {
       <div>
         {
           articleList.map((item, index) => (
-            <Link to='/detail' key={index}>
+            <Link to={'/detail/' + item.get('id')} key={index}>
               <ListItem>
                 <img
                   className='list-pic'
@@ -25,7 +25,9 @@ class List extends PureComponent {
             </Link>
           ))
         }
-        <LoadMore onClick={()=>{getMoreList(articlePage)}}>加载更多</LoadMore>
+        <LoadMore onClick={() => {
+          getMoreList(articlePage)
+        }}>加载更多</LoadMore>
       </div>
     )
   }
