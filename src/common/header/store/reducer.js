@@ -7,7 +7,8 @@ const defaultState = fromJS({
   list: [],
   page: 1,
   totalPage: 1,
-  rotate: 0
+  rotate: 0,
+  searchInput: ''
 })
 
 export default (state = defaultState, action) => {
@@ -29,6 +30,8 @@ export default (state = defaultState, action) => {
       return state.set('page', action.page)
     case actionTypes.SPINICON_ROTATE:
       return state.set('rotate', action.rotate + 360)
+    case actionTypes.CHANGE_SEARCH_INPUT:
+      return state.set('searchInput', action.searchWord)
     default:
       return state
   }

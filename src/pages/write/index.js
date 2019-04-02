@@ -1,13 +1,16 @@
 import React, {PureComponent} from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {WriteWrapper} from './style'
 
 class Login extends PureComponent {
   render() {
     const {loginStatus} = this.props
     if (loginStatus) {
       return (
-        <div>写文章</div>
+        <WriteWrapper>
+          <div className='empty'>无文章</div>
+        </WriteWrapper>
       )
     } else {
       return <Redirect to='/login'/>

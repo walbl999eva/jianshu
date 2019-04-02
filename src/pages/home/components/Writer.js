@@ -22,11 +22,13 @@ class Writer extends PureComponent {
         {
           writerList.map(item => (
             <WriterItem key={item.get('id')}>
-              <img
-                src={item.get('avatar_source')}
-                className='writer-pic'
-                alt=''/>
-              <a className='sub' href='/'>+关注</a>
+              <span className='avatar'>
+                <img
+                  src={item.get('avatar_source')}
+                  className='writer-pic'
+                  alt=''/>
+              </span>
+              <a className='sub' href='/'>+<span>关注</span></a>
               <a className='info-name' href='/'>{item.get('nickname')}</a>
               <p className='info-desc'>写了{Math.floor(item.get('total_wordage') / 100) / 10}k字
                 · {Math.floor(item.get('total_likes_count') / 100) / 10}k喜欢</p>

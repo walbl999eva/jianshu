@@ -6,6 +6,7 @@ const defaultState = fromJS({
   articleList: [],
   recommendList: [],
   writerList: [],
+  carousel: [],
   rotate: 0,
   articlePage: 1,
   showScrollTop: false
@@ -17,6 +18,7 @@ const changeHomeData = (state, action) => {
     articleList: action.articleList,
     recommendList: action.recommendList,
     writerList: action.writerList,
+    carousel: action.carousel,
     rotate: action.rotate
   })
 }

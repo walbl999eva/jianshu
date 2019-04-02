@@ -34,6 +34,7 @@ class ScrollToTop extends Component {
         window.scrollTo(0, top - top / 2)
       } else {
         clearInterval(timer)
+        timer = null
       }
     }, 20)
   }

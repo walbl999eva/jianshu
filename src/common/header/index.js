@@ -5,6 +5,7 @@ import {actionCreators} from './store'
 import {actionCreators as loginActionCreators} from '../../pages/login/store'
 import {Link} from "react-router-dom";
 import {
+  HeaderBox,
   HeaderWrapper,
   Logo,
   Nav,
@@ -22,58 +23,72 @@ import {
 
 class Header extends Component {
   render() {
-    const {focused, handleInputFocus, handleInputBlur, list, login,logout} = this.props
+    const {focused, handleInputFocus, handleInputBlur, handleInputChange, list, login, logout, searchInput} = this.props
     return (
-      <HeaderWrapper>
-        <Link to='/'>
-          <Logo/>
-        </Link>
-        <Nav>
-          <Link to='/'><NavItem className='left active'>首页</NavItem></Link>
-          <NavItem className='left'>下载App</NavItem>
-          {
-            login ?
-              <NavItem className='right' onClick={logout}>退出</NavItem> :
-              <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
-          }
-          <NavItem className='right'>
-            <span className="iconfont">&#xe600;</span>
-          </NavItem>
-          <SearchWrapper>
-            <CSSTransition
-              in={focused}
-              timeout={200}
-              classNames="slide"
-            >
-              <NavSearch
-                className={focused ? 'focused' : ''}
-                onFocus={() => {
-                  handleInputFocus(list)
-                }}
-                onBlur={handleInputBlur}
-              />
-            </CSSTransition>
-            <span
-              className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}
-            >&#xe679;</span>
-            {this.showListArea()}
-          </SearchWrapper>
-        </Nav>
-        <Addition>
-          <Link to='/write'>
-            <Button className='writing'>
-              <span className="iconfont">&#xe616;</span>
-              写文章
-            </Button>
+      <HeaderBox>
+        <HeaderWrapper>
+          <Link to='/'>
+            <Logo/>
           </Link>
-          <Button className='reg'>注册</Button>
-        </Addition>
-      </HeaderWrapper>
+          <Nav>
+            <Link to='/'>
+              <NavItem className='left active'>
+                <span className="iconfont">&#xe644;</span>
+                首页
+              </NavItem>
+            </Link>
+            <NavItem className='left download'>
+              <span className="iconfont">&#xe602;</span>
+              下载App
+            </NavItem>
+            {
+              login ?
+                <NavItem className='right' onClick={logout}>退出</NavItem> :
+                <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
+            }
+            <NavItem className='right'>
+              <span className="iconfont">&#xe600;</span>
+            </NavItem>
+            <SearchWrapper>
+              <CSSTransition
+                in={focused}
+                timeout={200}
+                classNames="slide"
+              >
+                <NavSearch
+                  className={focused ? 'focused' : ''}
+                  onFocus={() => {
+                    handleInputFocus(list)
+                  }}
+                  onBlur={handleInputBlur}
+                  onChange={handleInputChange}
+                  value={searchInput}
+                />
+              </CSSTransition>
+              <span
+                className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}
+              >&#xe679;</span>
+              {this.showListArea()}
+            </SearchWrapper>
+          </Nav>
+          <Addition>
+            <Link to='/write'>
+              <Button className='writing'>
+                <span className="iconfont">&#xe616;</span>
+                写文章
+              </Button>
+            </Link>
+            {
+              login ? <div className='avatar'/> : <Button className='reg'>注册</Button>
+            }
+          </Addition>
+        </HeaderWrapper>
+      </HeaderBox>
     )
   }
 
   showListArea() {
-    const {focused, list, page, totalPage, mouseIn, rotate, HandleMouseEnter, HandleMouseLeave, HandleChangePage} = this.props
+    const {focused, list, page, totalPage, mouseIn, rotate, HandleMouseEnter, HandleMouseLeave, HandleChangePage, HandleHotSearchClick} = this.props
     const newList = list.toJS()
     const pageList = []
 
@@ -81,7 +96,9 @@ class Header extends Component {
       for (let i = (page - 1) * 10; i < page * 10; i++) {
         if (newList[i]) {
           pageList.push(
-            <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+            <SearchInfoItem key={newList[i]} onClick={() => {
+              HandleHotSearchClick(newList[i])
+            }}>{newList[i]}</SearchInfoItem>
           )
         }
       }
@@ -126,6 +143,7 @@ const mapStateToProps = (state) => {
     totalPage: state.getIn(['header', 'totalPage']),
     mouseIn: state.getIn(['header', 'mouseIn']),
     rotate: state.getIn(['header', 'rotate']),
+    searchInput: state.getIn(['header', 'searchInput']),
     login: state.getIn(['login', 'login']),
   }
 }
@@ -138,6 +156,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleInputBlur() {
       dispatch(actionCreators.searchBlur())
+    },
+    handleInputChange(e) {
+      dispatch(actionCreators.changeSearchInput(e.target.value))
     },
     HandleMouseEnter() {
       dispatch(actionCreators.mouseEnter())
@@ -154,7 +175,10 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(actionCreators.changePage(1))
       }
     },
-    logout(){
+    HandleHotSearchClick(searchWord) {
+      dispatch(actionCreators.changeSearchInput(searchWord))
+    },
+    logout() {
       dispatch(loginActionCreators.logout())
     }
   }

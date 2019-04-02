@@ -8,6 +8,7 @@ const changeHomeInfo = (result) => ({
   articleList: fromJS(result.articleList),
   recommendList: fromJS(result.recommendList),
   writerList: fromJS(result.writerList),
+  carousel: fromJS(result.carousel),
   rotate: fromJS(result.rotate)
 })
 const addHomeList = (result, nextPage) => ({

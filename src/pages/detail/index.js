@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react'
 import {actionCreators} from "../detail/store";
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {DetailWrapper, Header, Content, DetailInfo} from "./style";
+import {DetailWrapper, Header, Content, DetailInfo,Note,Support,MetaBottom} from "./style";
 import ScrollToTop from '../../common/scrollToTop'
 
 class Detail extends PureComponent {
@@ -40,6 +40,25 @@ class Detail extends PureComponent {
           </div>
         </DetailInfo>
         <Content dangerouslySetInnerHTML={{__html: content}}/>
+        <Support>
+          <p>小礼物走一走，来简书关注我</p>
+          <div className='btn'>赞赏支持</div>
+        </Support>
+        <MetaBottom>
+          <div className='like'>
+            <div className='likeBtn'>喜欢</div>
+            <div className='likeNum'>216</div>
+          </div>
+          <div className='share'>
+
+          </div>
+        </MetaBottom>
+        <Note>
+          <div className='ad'>
+            <span className='close'>X</span>
+          </div>
+          <div className='qrcode'></div>
+        </Note>
         <ScrollToTop/>
       </DetailWrapper>
     )

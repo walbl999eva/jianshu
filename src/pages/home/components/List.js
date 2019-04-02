@@ -11,18 +11,36 @@ class List extends PureComponent {
       <div>
         {
           articleList.map((item, index) => (
-            <Link to={'/detail/' + item.get('id')} key={index}>
-              <ListItem>
-                <img
-                  className='list-pic'
-                  alt=''
-                  src={item.get('url')}/>
-                <ListInfo>
+            <ListItem key={index}>
+              <img
+                className='list-pic'
+                alt=''
+                src={item.get('url')}/>
+              <ListInfo>
+                <Link to={'/detail/' + item.get('id')}>
                   <h3 className='title'>{item.get('title')}</h3>
-                  <p className='desc'>{item.get('desc')}</p>
-                </ListInfo>
-              </ListItem>
-            </Link>
+                </Link>
+                <p className='desc'>{item.get('desc')}</p>
+                <div className='meta'>
+                  {
+                    item.get('jsd') ?
+                      <span className='jsd-meta'>
+                          <span className="iconfont">&#xe61e;</span>
+                        {item.get('jsd')}
+                        </span> : null
+                  }
+                  <a href="/" className='nickname'>{item.get('nickname')}</a>
+                  <a href="/" className='comments'>
+                    <span className="iconfont">&#xe63f;</span>
+                    {item.get('comments')}
+                  </a>
+                  <span className='likes'>
+                      <span className="iconfont">&#xe601;</span>
+                    {item.get('likes')}
+                    </span>
+                </div>
+              </ListInfo>
+            </ListItem>
           ))
         }
         <LoadMore onClick={() => {

@@ -40,3 +40,7 @@ export const spinIconRotate = (rotate) => ({
   type: actionTypes.SPINICON_ROTATE,
   rotate
 })
+export const changeSearchInput = (searchWord) => ({
+  type: actionTypes.CHANGE_SEARCH_INPUT,
+  searchWord
+})

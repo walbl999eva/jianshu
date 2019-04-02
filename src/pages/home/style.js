@@ -13,7 +13,7 @@ const multiline_ellipsis = (num) => `
 
 export const HomeWrapper = styled.div`
   width: 960px;
-  margin: 0 auto;
+  margin: 56px auto 0;
   &:after{
     content: '';
     display: block;
@@ -38,6 +38,46 @@ export const HomeRight = styled.div`
   padding-top: 30px;
   margin-top: -1px;
   float: right;
+`
+export const Banner = styled.div`
+  width: 625px;
+  height: 270px;
+  border-radius: 5px;
+  overflow:hidden;
+  .swiper-container{
+    z-index: 0;
+    .carousel-pic{
+      width: 100%;
+    }
+    .swiper-button-warp{
+      &.hide{
+        opacity: 0;
+      }
+      .swiper-button-white{
+        background-color:rgba(0,0,0,.3);
+        background-size: 50% 50%;
+      }
+      .swiper-button-next{
+        right: 0;
+        border-radius: 8px 0 0 8px;
+      }
+      .swiper-button-prev{
+        left: 0;
+        border-radius: 0 8px 8px 0;
+      }
+    }
+    .swiper-pagination{
+      .swiper-pagination-bullet{
+        width: 25px;
+        height: 2px;
+        border-radius: 2px;
+        background-color: rgba(20,20,20,0.8);
+      }
+      .swiper-pagination-bullet-active{
+        background: #ffffff;
+      }
+    }
+  }
 `
 export const TopicWrapper = styled.div`
   padding: 20px 0 10px 0;
@@ -97,6 +137,9 @@ export const ListItem = styled.div`
 export const ListInfo = styled.div`
   padding-right: 165px;
   float:left;
+  a{
+    text-decoration: none;
+  }
   .title{
     font-size: 18px;
     line-height: 27px;
@@ -109,8 +152,36 @@ export const ListInfo = styled.div`
     color:#999;
     ${multiline_ellipsis(3)}
   }
+  .meta{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-top: 8px;
+    a{
+      transition: .1s ease-in;
+      margin-right: 10px;
+      color: #b4b4b4;
+      .iconfont{
+        font-size: 13px;
+        margin-right: 3px;
+      }
+    }
+    .jsd-meta{
+      color: #ea6f5a;
+    }
+    .likes{
+      color:#b4b4b4;
+    }
+    .jsd-meta,.likes{
+      margin-right: 10px;
+      .iconfont{
+        font-size: 13px;
+        margin-right: 3px;
+      }
+    }
+  }
 `
-export const LoadMore=styled.div`
+export const LoadMore = styled.div`
   width: 100%;
   height: 40px;
   margin: 30px 0;
@@ -183,15 +254,20 @@ export const WriterItem = styled.div`
   margin-top: 15px;
   line-height: 20px;
   text-align:left;
-  .writer-pic{
-    float: left;
+  .avatar{
     width: 48px;
     height: 48px;
+    float: left;
     margin-right: 10px;
     border: 1px solid #ddd;
     border-radius: 50%;
     box-sizing:border-box;
-    cursor:pointer;
+    overflow:hidden;
+    .writer-pic{
+      width: 100%;
+      height: 100%;
+      cursor:pointer;
+    }
   }
   .info-name{
     padding-top: 5px;
@@ -209,12 +285,16 @@ export const WriterItem = styled.div`
   .sub{
     float: right;
     margin-top: 5px;
-    font-size: 13px;
+    font-size: 16px;
     color: #42c02e;
     cursor:pointer;
+    span{
+      font-size: 13px;
+      vertical-align: middle;
+    }
   }
 `
-export const BackTop=styled.div`
+export const BackTop = styled.div`
   position: fixed;
   right: 30px;
   bottom: 30px;
@@ -229,4 +309,37 @@ export const BackTop=styled.div`
   letter-spacing: 2px;
   box-sizing:border-box;
   cursor:pointer;
+`
+export const FooterWrapper = styled.div`
+  width: 960px;
+  margin: 0 auto;
+  padding: 25px 15px 0;
+  .main{
+    width: 70%;
+    padding-left: 20px;
+    font-size: 13px;
+    color: #969696;
+    a{
+      color: #969696;
+      display: inline-block;
+      text-decoration: none;
+      cursor:pointer;
+    }
+    .icp{
+      line-height: 17.1428px;
+      color: #c8c8c8;
+      margin-top: 10px;
+      font-size: 12px;
+      img{
+        height: 30px;
+        vertical-align: middle;
+      }
+      a{
+        display: inline-block;
+        color: #c8c8c8;
+        text-decoration: none;
+        cursor:pointer;
+      }
+    }
+  }
 `
