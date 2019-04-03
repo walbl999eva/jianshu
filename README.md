@@ -1,3 +1,6 @@
+## **React 简书项目**
+使用React 16配合ImmutableJS、Swiper等库开发出简书的首页、详情页、登录页。
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
