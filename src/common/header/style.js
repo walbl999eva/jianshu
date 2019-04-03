@@ -17,16 +17,12 @@ export const HeaderWrapper = styled.div`
   margin: 0 auto;
   background:#fff;
   border-bottom: 1px solid #f0f0f0;
-  @media (max-width:1080px){
-    padding-left: 100px;
-    padding-right: 221px;
+  > a{
+    float:left;
   }
 `
 
 export const Logo = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
   display:block;
   width: 100px;
   height: 56px;
@@ -64,6 +60,17 @@ export const NavItem = styled.div`
   .iconfont{
     font-size: 18px;
     margin-right: 5px;
+  }
+  @media (max-width:992px){
+    &.left{
+      .text{
+        display: none;
+      }
+      .iconfont{
+        font-size: 20px;
+        margin-right: 0;
+      }
+    }
   }
 `
 export const SearchWrapper = styled.div`
@@ -117,6 +124,18 @@ export const NavSearch = styled.input.attrs({
   &::placeholder{
     color:#999;
   }
+  @media (max-width:992px){
+    width: 160px;
+    &.slide-enter-active{
+      width: 240px;
+    }
+    &.slide-exit-active{
+      width: 160px;
+    }
+    &.focused{
+      width: 240px;
+    }
+  }
 `
 export const SearchInfo = styled.div`
   position: absolute;
@@ -125,6 +144,7 @@ export const SearchInfo = styled.div`
   width: 240px;
   padding: 0 20px;
   box-shadow: 0 0 8px rgba(0,0,0,.2);
+  border-radius: 3px;
   background:#fff;
   &:before{
     content: '';
@@ -190,9 +210,7 @@ export const SearchInfoItem = styled.a`
   cursor:pointer;
 `
 export const Addition = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
+  float: right;
   height: 56px;
   .avatar{
     position: relative;

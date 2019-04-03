@@ -47,8 +47,8 @@ class Carousel extends PureComponent {
       return this.swiper
     }
     this.swiper = new Swiper('.swiper-container', {
-      width: 625,
-      height: 270,
+      // width: 625,
+      // height: 270,
       speed: 900,
       loop: true,
       observer: true,

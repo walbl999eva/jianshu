@@ -30,16 +30,27 @@ class Header extends Component {
           <Link to='/'>
             <Logo/>
           </Link>
+          <Addition>
+            <Link to='/write'>
+              <Button className='writing'>
+                <span className="iconfont">&#xe616;</span>
+                写文章
+              </Button>
+            </Link>
+            {
+              login ? <div className='avatar'/> : <Button className='reg'>注册</Button>
+            }
+          </Addition>
           <Nav>
             <Link to='/'>
               <NavItem className='left active'>
                 <span className="iconfont">&#xe644;</span>
-                首页
+                <span className='text'>首页</span>
               </NavItem>
             </Link>
             <NavItem className='left download'>
               <span className="iconfont">&#xe602;</span>
-              下载App
+              <span className='text'>下载App</span>
             </NavItem>
             {
               login ?
@@ -62,6 +73,7 @@ class Header extends Component {
                   }}
                   onBlur={handleInputBlur}
                   onChange={handleInputChange}
+                  onKeyUp={this.handleInputSearch}
                   value={searchInput}
                 />
               </CSSTransition>
@@ -71,17 +83,6 @@ class Header extends Component {
               {this.showListArea()}
             </SearchWrapper>
           </Nav>
-          <Addition>
-            <Link to='/write'>
-              <Button className='writing'>
-                <span className="iconfont">&#xe616;</span>
-                写文章
-              </Button>
-            </Link>
-            {
-              login ? <div className='avatar'/> : <Button className='reg'>注册</Button>
-            }
-          </Addition>
         </HeaderWrapper>
       </HeaderBox>
     )
@@ -133,6 +134,14 @@ class Header extends Component {
       return null
     }
   }
+
+  handleInputSearch(e){
+    if(e.keyCode===13){
+      console.log(123)
+      let searchWord=e.target.value
+      window.location.href=`https://www.jianshu.com/search?utf8=%E2%9C%93&q=${searchWord}`
+    }
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -176,6 +185,7 @@ const mapDispatchToProps = (dispatch) => {
       }
     },
     HandleHotSearchClick(searchWord) {
+      window.location.href=`https://www.jianshu.com/search?utf8=%E2%9C%93&q=${searchWord}`
       dispatch(actionCreators.changeSearchInput(searchWord))
     },
     logout() {

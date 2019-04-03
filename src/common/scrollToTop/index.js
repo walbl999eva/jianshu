@@ -31,7 +31,7 @@ class ScrollToTop extends Component {
     let timer = setInterval(() => {
       let top = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
       if (top) {
-        window.scrollTo(0, top - top / 2)
+        window.scrollTo(0, top / 2)
       } else {
         clearInterval(timer)
         timer = null

@@ -21,12 +21,17 @@ export const HomeWrapper = styled.div`
     height: 0;
     visibility: hidden;
   }
+  @media (max-width:992px){
+      width: 750px;
+  }
 `
 export const HomeLeft = styled.div`
-  margin-left: 15px;
+  padding-left: 15px;
   padding-top: 30px;
-  width: 625px;
+  //width: 625px;
+  width: 66.66667%;
   float:left;
+  box-sizing:border-box;
   .banner-img{
     width: 625px;
     height: 270px;
@@ -34,20 +39,25 @@ export const HomeLeft = styled.div`
   }
 `
 export const HomeRight = styled.div`
-  width: 280px;
+  //width: 280px;
+  width: 29.16667%;
+  margin-left: 4.16667%;
   padding-top: 30px;
   margin-top: -1px;
   float: right;
+  box-sizing:border-box;
 `
 export const Banner = styled.div`
-  width: 625px;
-  height: 270px;
+  width: 100%;
+  //height: 270px;
   border-radius: 5px;
   overflow:hidden;
   .swiper-container{
     z-index: 0;
     .carousel-pic{
+      display:block;
       width: 100%;
+      height: 100%;
     }
     .swiper-button-warp{
       &.hide{
@@ -82,7 +92,7 @@ export const Banner = styled.div`
 export const TopicWrapper = styled.div`
   padding: 20px 0 10px 0;
   overflow:hidden;
-  margin-left: -18px;
+  margin-left: 0;
   border-bottom: 1px solid #dcdcdc;
   .more-topic{
     display:block;
@@ -90,7 +100,8 @@ export const TopicWrapper = styled.div`
     font-size: 14px;
     height: 32px;
     line-height: 32px;
-    margin-left: 18px;
+    margin-right: 18px;
+    margin-bottom: 18px;
     color:#a0a0a0;
     cursor:pointer;
   }
@@ -105,7 +116,7 @@ export const TopicItem = styled.div`
   border: 1px solid #dcdcdc;
   border-radius: 4px;
   padding-right: 10px;
-  margin-left: 18px;
+  margin-right: 18px;
   margin-bottom: 18px;
   overflow:hidden;
   cursor:pointer;
@@ -200,11 +211,16 @@ export const RecommendList = styled.div`
 export const RecommendItem = styled.div`
   .recommend-pic{
     width: 100%;
-    min-height: 50px;
+    height: 50px;
     margin-bottom: 6px;
     border-radius: 4px;
     vertical-align: middle;
     cursor:pointer;
+  }
+  @media (max-width:992px){
+    .recommend-pic{
+      height: 39px;
+    }
   }
 `
 export const WriterList = styled.div`
@@ -341,5 +357,8 @@ export const FooterWrapper = styled.div`
         cursor:pointer;
       }
     }
+  }
+  @media (max-width:992px){
+    width: 750px;
   }
 `

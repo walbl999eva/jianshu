@@ -6,7 +6,9 @@ const changeDetail = (result) => ({
   type: actionTypes.CHANGE_DETAIL,
   title: result.title,
   info: fromJS(result.info),
-  content: result.content
+  content: result.content,
+  metaList: fromJS(result.metaList),
+  comments: fromJS(result.comments)
 })
 
 export const getDetail = (id) => {
@@ -18,3 +20,7 @@ export const getDetail = (id) => {
       })
   }
 }
+export const showMetaTip=(id)=>({
+  type:actionTypes.SHOW_META_TIP,
+  id
+})
